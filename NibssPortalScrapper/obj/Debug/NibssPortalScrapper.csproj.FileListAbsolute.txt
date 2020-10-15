@@ -1,0 +1,12 @@
+C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\bin\Debug\NibssPortalScrapper.exe.config
+C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\bin\Debug\NibssPortalScrapper.exe
+C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\bin\Debug\NibssPortalScrapper.pdb
+C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\bin\Debug\ConsoleCommon.dll
+C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\bin\Debug\WebDriver.dll
+C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\bin\Debug\WebDriver.Support.dll
+C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\bin\Debug\WebDriver.xml
+C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\bin\Debug\WebDriver.Support.xml
+C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.csproj.CopyComplete
+C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.exe
+C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.pdb
+C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.csprojAssemblyReference.cache
