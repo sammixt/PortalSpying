@@ -39,5 +39,8 @@ namespace NibssPortalScrapper
         public string EndYear { get; set; }
         [Switch("HL")]
         public bool Headless { get; set; }
+        [Switch("SS")]
+        public string Session { get; set; }
+
     }
 }

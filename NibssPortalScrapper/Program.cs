@@ -52,39 +52,27 @@ namespace NibssPortalScrapper
                 navSteps.SelectDownloadFormat();
                 Thread.Sleep(2000);
                 navSteps.ClickDownload();
-                bool hasDownloadStarted = false;
-                bool wasDownloadStarted = false;
                 bool wasMaxTimeExceeded = false;
-                int maxCount = 150, startCount = 1;
                 DirectoryInfo directory = new DirectoryInfo(inputParams.DownloadPath);
                 //var checkForDownloadFile = directory.GetFiles("echequesummary*.crdownload");
-                do
-                {
-                    var checkForDownloadFile = directory.GetFiles("echequesummary*.crdownload");
-                    if (checkForDownloadFile.Length >= 1)
-                    {
-                        hasDownloadStarted = true;
-                    }
-                    else
-                    {
-                        Thread.Sleep(2000);
-                        startCount++;
-                    }
-
-                    if (hasDownloadStarted | (startCount == maxCount))
-                    {
-                        if (startCount == maxCount)
-                        {
-                            wasMaxTimeExceeded = true;
-                        }
-                        wasDownloadStarted = true;
-                        
-                    }
-                    Console.Write(".");
-                } while (!wasDownloadStarted);
+                wasMaxTimeExceeded = BeginDownload(directory, "echequesummary");
 
                 log.Info("Waiting for download to Commence.. 60secs delay");
 
+                if (!wasMaxTimeExceeded)
+                {
+                    navSteps.SwitchToDefault();
+                    navSteps.SwitchToSidebar();
+                    log.Info("Bank Settlement Report Page");
+                    navSteps.ClicReconDropDown();
+                    navSteps.ClickBankSettlementReport();
+                    Thread.Sleep(7000);
+                    navSteps.SwitchToDefault();
+                    navSteps.SwitchToContent();
+
+                    navSteps.DownloadReconciliationReport(inputParams.Session);
+                    wasMaxTimeExceeded = BeginDownload(directory, "settlementreport");
+                }
 
                 //Thread.Sleep(30000);
                 int size;
@@ -106,9 +94,9 @@ namespace NibssPortalScrapper
                 {
                     output = false;
                 }
-                
+
                 //output = true;
-               
+
                 navSteps.SwitchToContent();
                 navSteps.SwitchToHeader();
                 navSteps.SignOut();
@@ -128,6 +116,39 @@ namespace NibssPortalScrapper
 
         }
 
+        private static bool BeginDownload(DirectoryInfo directory, string search)
+        {
+            bool hasDownloadStarted = false;
+            bool wasDownloadStarted = false;
+            bool wasMaxTimeExceeded = false;
+            int maxCount = 150, startCount = 1;
+            do
+            {
+                var checkForDownloadFile = directory.GetFiles($"{search}*.crdownload");
+                if (checkForDownloadFile.Length >= 1)
+                {
+                    hasDownloadStarted = true;
+                }
+                else
+                {
+                    Thread.Sleep(2000);
+                    startCount++;
+                }
+
+                if (hasDownloadStarted | (startCount == maxCount))
+                {
+                    if (startCount == maxCount)
+                    {
+                        wasMaxTimeExceeded = true;
+                    }
+                    wasDownloadStarted = true;
+
+                }
+                Console.Write(".");
+            } while (!wasDownloadStarted);
+
+            return wasMaxTimeExceeded;
+        }
 
         public static void WriteOutput(bool result, string downloadPath)
         {

@@ -20,9 +20,26 @@ namespace NibssPortalScrapper.Pages
 
         public bool AssertHomePage(string assertiveName) => CompanySegment.Text.Contains(assertiveName);
 
-        public IWebElement ClickReportDropDown => WebDriver.FindElement(By.XPath("//a[@headerindex = '5h']//span[@class = 'accordsuffix']//img"));
+        #region reconciliation
+        public IWebElement ReconciliationDropDown => WebDriver.FindElement(By.XPath("//a[@headerindex = '4h']//span[@class = 'accordsuffix']//img"));
+        public void ClickReconciliationDropDown() => ReconciliationDropDown.Click();
 
-        public void ClickDropDown() => ClickReportDropDown.Click();
+        public IWebElement BankSettlementReport => WebDriver.FindElement(By.XPath("//a[.//font[text()='BANK: Settlement Report']]"));
+        public void ClickBankSettlementReport() => BankSettlementReport.Click();
+
+        public IWebElement Session => WebDriver.FindElement(By.XPath("//input[@type='text'][@name='sessionno'][@id='sessionno']"));
+
+        public void EnterSession(string sessionTime)
+        {
+            Session.SendKeys(sessionTime);
+        }
+
+        public IWebElement ViewType => WebDriver.FindElement(By.XPath("//input[@type='radio'][@name='viewType'][@id='viewType_detail']"));
+        public void CheckViewType() => ViewType.Click();
+
+        #endregion reconciliation
+        public IWebElement ReportDropDown => WebDriver.FindElement(By.XPath("//a[@headerindex = '5h']//span[@class = 'accordsuffix']//img"));
+        public void ClickDropDown() => ReportDropDown.Click();
 
         public IWebElement AllTransactionReport => WebDriver.FindElement(By.XPath("//a[.//font[text()='All Transactions Report']]"));
         public void ClickAllTransactionReport() => AllTransactionReport.Click();

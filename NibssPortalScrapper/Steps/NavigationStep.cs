@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NibssPortalScrapper.Steps
@@ -49,6 +50,21 @@ namespace NibssPortalScrapper.Steps
         {
             homePage.CheckTransactionList();
             homePage.CheckExcel();
+        }
+
+        public void ClicReconDropDown() => homePage.ClickReconciliationDropDown();
+        public void ClickBankSettlementReport() => homePage.ClickBankSettlementReport();
+
+        public void DownloadReconciliationReport(string session)
+        {
+           
+            homePage.EnterSession(session);
+            Thread.Sleep(200);
+            homePage.CheckViewType();
+            Thread.Sleep(200);
+            homePage.CheckExcel();
+            Thread.Sleep(200);
+            homePage.ClickDownloadBtn();
         }
 
         public void ClickDownload() => homePage.ClickDownloadBtn();

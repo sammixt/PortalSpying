@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>
-    </StartArguments>
+    <StartArguments>/U:"ECOBOT" /P:"Ecobank123" /URL:"https://naps.nibss-plc.com.ng/remita/logonScreen.jsp" /D:"C:\Users\esc\source\repos\POS_Acquired\\" /CODE:"050" /SD:"4" /SM:"11" /SY:"2020" /ED:"5" /EM:"11" /EY:"2020" /HL:"false" /SS:"2011051600"</StartArguments>
   </PropertyGroup>
 </Project>
