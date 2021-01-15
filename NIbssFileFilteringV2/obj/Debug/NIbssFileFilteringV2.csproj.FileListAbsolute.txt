@@ -1,0 +1,8 @@
+C:\Users\esc\source\repos\NibssPortalScrapper\NIbssFileFilteringV2\bin\Debug\NIbssFileFilteringV2.exe.config
+C:\Users\esc\source\repos\NibssPortalScrapper\NIbssFileFilteringV2\bin\Debug\NIbssFileFilteringV2.exe
+C:\Users\esc\source\repos\NibssPortalScrapper\NIbssFileFilteringV2\bin\Debug\NIbssFileFilteringV2.pdb
+C:\Users\esc\source\repos\NibssPortalScrapper\NIbssFileFilteringV2\bin\Debug\ConsoleCommon.dll
+C:\Users\esc\source\repos\NibssPortalScrapper\NIbssFileFilteringV2\obj\Debug\NIbssFileFilteringV2.csprojAssemblyReference.cache
+C:\Users\esc\source\repos\NibssPortalScrapper\NIbssFileFilteringV2\obj\Debug\NIbssFileFilteringV2.csproj.CopyComplete
+C:\Users\esc\source\repos\NibssPortalScrapper\NIbssFileFilteringV2\obj\Debug\NIbssFileFilteringV2.exe
+C:\Users\esc\source\repos\NibssPortalScrapper\NIbssFileFilteringV2\obj\Debug\NIbssFileFilteringV2.pdb

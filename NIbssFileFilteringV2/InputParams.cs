@@ -21,5 +21,11 @@ namespace NIbssFileFilteringV2
         public string SettlementType { get; set; }
         [Switch("SS")]
         public string Session { get; set; }
+        [Switch("F")]
+        public string FilterColumn { get; set; }
+        [Switch("FC")]
+        public string FilterCondition { get; set; }
+        [Switch("SN")]
+        public string SheetName { get; set; }
     }
 }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NibssPortalScrapper", "Nibs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NibssFileFiltering", "NibssFileFiltering\NibssFileFiltering.csproj", "{59728606-96F2-4FFC-AA5E-F6B11AF41D7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NIbssFileFilteringV2", "NIbssFileFilteringV2\NIbssFileFilteringV2.csproj", "{57F543AC-4E87-4303-9698-A520A41F5AC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{59728606-96F2-4FFC-AA5E-F6B11AF41D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59728606-96F2-4FFC-AA5E-F6B11AF41D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59728606-96F2-4FFC-AA5E-F6B11AF41D7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57F543AC-4E87-4303-9698-A520A41F5AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57F543AC-4E87-4303-9698-A520A41F5AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57F543AC-4E87-4303-9698-A520A41F5AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57F543AC-4E87-4303-9698-A520A41F5AC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
