@@ -6,3 +6,12 @@ C:\Users\esc\source\repos\NibssPortalScrapper\NIbssFileFilteringV2\obj\Debug\NIb
 C:\Users\esc\source\repos\NibssPortalScrapper\NIbssFileFilteringV2\obj\Debug\NIbssFileFilteringV2.csproj.CopyComplete
 C:\Users\esc\source\repos\NibssPortalScrapper\NIbssFileFilteringV2\obj\Debug\NIbssFileFilteringV2.exe
 C:\Users\esc\source\repos\NibssPortalScrapper\NIbssFileFilteringV2\obj\Debug\NIbssFileFilteringV2.pdb
+C:\Users\JOY\source\repos\PortalSpying\NIbssFileFilteringV2\bin\Debug\NIbssFileFilteringV2.exe.config
+C:\Users\JOY\source\repos\PortalSpying\NIbssFileFilteringV2\bin\Debug\NIbssFileFilteringV2.exe
+C:\Users\JOY\source\repos\PortalSpying\NIbssFileFilteringV2\bin\Debug\NIbssFileFilteringV2.pdb
+C:\Users\JOY\source\repos\PortalSpying\NIbssFileFilteringV2\bin\Debug\ConsoleCommon.dll
+C:\Users\JOY\source\repos\PortalSpying\NIbssFileFilteringV2\obj\Debug\NIbssFileFilteringV2.csprojAssemblyReference.cache
+C:\Users\JOY\source\repos\PortalSpying\NIbssFileFilteringV2\obj\Debug\NIbssFileFilteringV2.csproj.CoreCompileInputs.cache
+C:\Users\JOY\source\repos\PortalSpying\NIbssFileFilteringV2\obj\Debug\NIbssFileFilteringV2.csproj.CopyComplete
+C:\Users\JOY\source\repos\PortalSpying\NIbssFileFilteringV2\obj\Debug\NIbssFileFilteringV2.exe
+C:\Users\JOY\source\repos\PortalSpying\NIbssFileFilteringV2\obj\Debug\NIbssFileFilteringV2.pdb

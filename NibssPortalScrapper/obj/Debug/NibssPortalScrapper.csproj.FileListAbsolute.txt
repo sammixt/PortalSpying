@@ -10,3 +10,16 @@ C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\obj\Debug\Nibs
 C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.exe
 C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.pdb
 C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.csprojAssemblyReference.cache
+C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\bin\Debug\NibssPortalScrapper.exe.config
+C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\bin\Debug\NibssPortalScrapper.exe
+C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\bin\Debug\NibssPortalScrapper.pdb
+C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\bin\Debug\ConsoleCommon.dll
+C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\bin\Debug\WebDriver.dll
+C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\bin\Debug\WebDriver.Support.dll
+C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\bin\Debug\WebDriver.xml
+C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\bin\Debug\WebDriver.Support.xml
+C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.csprojAssemblyReference.cache
+C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.csproj.CoreCompileInputs.cache
+C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.csproj.CopyComplete
+C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.exe
+C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.pdb

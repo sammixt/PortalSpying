@@ -16,15 +16,9 @@ namespace NIbssFileFilteringV2
         static Logger log = new Logger();
         static void Main(string[] args)
         {
-            var items = GetKeysAndColumns();
-
-
-
+            
             InputParams inputParams = new InputParams(args);
-            //string fullPath = @"D:\RPAFiles\NIBSS\Files\2020-12-16\SESSION_4\NIP\NIP_050_inwards successful.csv";
             string fullPath = @inputParams.FullPath;
-            //int lastIndex = fullPath.LastIndexOf(@"\") + 1;
-            //string filename = fullPath.Substring(lastIndex, fullPath.Length - lastIndex);
             string filename = $"{inputParams.SheetName}$";
             string folder = fullPath;
             string resultPath = @"downloadResultPath".GetKeyValue();
@@ -41,11 +35,9 @@ namespace NIbssFileFilteringV2
             Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
             foreach (CellElement file in RequiredCell.GetCells())
             {
-                //Console.WriteLine(file.CellName);
                 allowedCell.Add(file.CellName);
                 keyValuePairs.Add(file.CellName, file.ColumnName);
-                //Console.WriteLine(file.ColumnName);
-                //DO WORK
+               
             }
 
             return new Tuple<string[], Dictionary<string, string>>(allowedCell.ToArray(), keyValuePairs);
@@ -58,19 +50,16 @@ namespace NIbssFileFilteringV2
             string filterColumn,
             string filterCondition)
         {
-            string HDRString = "Yes";
+            string HDRString = "No";
             bool output = false;
 
             try
             {
                 DataTable table = new DataTable();
                 var getKeysAndColumns = GetKeysAndColumns();
-                //string Folder = @"\\Mac\Home\Desktop\Nip Settlement\16Dec2020";
-                //string FileName = "NIP_050_outwards successful.csv";
-                //Split_Path(CSV_Location, Folder, Filename);
                 string Folder = @folder;
                 string FileName = fileName;
-                OleDbConnection cn = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + Folder + ";Extended Properties=\"Text;HDR=" + HDRString + " IMEX=1;FMT=Delimited\"");
+                OleDbConnection cn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" + Folder + ";Extended Properties=\"Excel 12.0;HDR=" + HDRString + "  IMEX=1\"");
                 OleDbDataAdapter da = new OleDbDataAdapter();
                 DataSet ds = new DataSet();
                 OleDbCommand cd = new OleDbCommand("SELECT * FROM [" + FileName + "]", cn);
@@ -82,28 +71,7 @@ namespace NIbssFileFilteringV2
                 da.Fill(ds, "CSV");
                 table = ds.Tables[0];
                 cn.Close();
-
-                //log.Info($"Removing Rows with empty Amount columns");
-                //foreach (DataRow row in table.Select(String.Format("[{0}] is null ", "F6")))
-                //{
-                //    row.Delete();
-                //}
-                //table.AcceptChanges();
-
-                //log.Info($"Removing unwanted rows");
-                //foreach (DataRow row in table.Select(String.Format("[{0}] = 'CHANNEL' ", "F2")))
-                //{
-                //    row.Delete();
-                //}
-                //table.AcceptChanges();
-
-
-                //string columnsToRemove = settlementType == "NIPINWARD"
-                //    ? "columnsToRemoveInward".GetKeyValue()
-                //    : "columnsToRemoveOutward".GetKeyValue();
-                //string allowedColumns = "allowedColumns".GetKeyValue();
-
-                //string[] cols = allowedColumns.Split(',');
+              
                 log.Info($"Removing unwanted columns");
 
                 var toBeRemoved = table.Columns.Cast<DataColumn>()
@@ -132,23 +100,21 @@ namespace NIbssFileFilteringV2
                 }
 
                 log.Info($"Filtering {filterColumnName} By {filterCondition}");
-                //var filteredTable = processFile.FilterByEBN(table);
-                var filteredTable = FilterBy(table, filterColumnName, filterCondition);
+                
+                var filteredTable = FilterBy2(table, filterColumnName, filterCondition);
                 int filterTableCount = filteredTable.Rows.Count;
-                //Add new column session and Settlement Type
+                if(filterTableCount > 1)
+                {
+                    string connectionString = ConfigurationManager.ConnectionStrings["DbCon"].ConnectionString;
+                    string databaseTable = "destinationTable".GetKeyValue();
+                    SqlDatabase database = new SqlDatabase(connectionString, databaseTable, log);
+                    output = database.InsertRecord(filteredTable);
+                }else
+                {
+                    log.Info("Filtered condition returns empty collection");
+                }
 
-                //DataColumn SettlementType = new DataColumn("SETTLEMENTTYPE", typeof(System.String));
-                //SettlementType.DefaultValue = settlementType;
-                //table.Columns.Add(SettlementType);
-                //DataColumn Session = new DataColumn("SESSION", typeof(string));
-                //Session.DefaultValue = session;
-                //table.Columns.Add(Session);
-                //table.AcceptChanges();
-
-                string connectionString = ConfigurationManager.ConnectionStrings["DbCon"].ConnectionString;
-                string databaseTable = "destinationTable".GetKeyValue();
-                SqlDatabase database = new SqlDatabase(connectionString, databaseTable, log);
-                output = database.InsertRecord(table);
+                
             }
             catch (Exception ex)
             {
@@ -177,14 +143,32 @@ namespace NIbssFileFilteringV2
 
         public static DataTable FilterBy(DataTable dataTable, string filterColumn, string filterCondition)
         {
+           
             var filteredBy = from data in dataTable.AsEnumerable()
-                                where data.Field<string>(filterColumn).Contains(filterCondition)
-                                select data;//.CopyToDataTable();
+                                where (data.Field<string>(filterColumn) != "NULL" &&
+                                data.Field<string>(filterColumn).StartsWith(filterCondition))
+                                select data;
             var tt = filteredBy.Count();
-            //BoData = null;
-            //SettlementData = null;
+           
             var Result = tt == 0 ? new DataTable() : filteredBy.CopyToDataTable();
             return Result;
+        }
+
+        public static DataTable FilterBy2(DataTable dataTable, string filterColumn, string filterCondition)
+        {
+            DataTable outputTable = dataTable.Clone();
+            var expression = $"[{filterColumn}] like '%{filterCondition}%'";
+
+            foreach(DataRow row in dataTable.Select(expression))
+            {
+                var NewRow = outputTable.NewRow();
+                foreach (DataColumn c in NewRow.Table.Columns)
+                    NewRow[c.ColumnName] = row[c.ColumnName];
+
+                outputTable.Rows.Add(NewRow);
+            }
+            
+            return outputTable;
         }
     }
 }
