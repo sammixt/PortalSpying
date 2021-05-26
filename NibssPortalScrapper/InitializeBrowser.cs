@@ -48,10 +48,12 @@ namespace NibssPortalScrapper
             {
                 chromeOptions.AddArgument("--headless");
             }
+            chromeOptions.AddArgument("--ignore-certificate-errors");
             chromeOptions.AddUserProfilePreference("download.default_directory", downloadPath);
             chromeOptions.AddUserProfilePreference("intl.accept_languages", "nl");
             chromeOptions.AddUserProfilePreference("disable-popup-blocking", "false");
             chromeOptions.AddUserProfilePreference(preferenceName: "download.prompt_for_download", "false");
+            chromeOptions.AcceptInsecureCertificates = true;
             driver = new ChromeDriver(browserpath, chromeOptions);
             //IWebDriver driver = new ChromeDriver(@"\\Mac\Home\Movies\chromedriver_win32", chromeOptions);
             driver.Url = url;

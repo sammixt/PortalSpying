@@ -23,3 +23,4 @@ C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\obj\Debug\NibssPortal
 C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.csproj.CopyComplete
 C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.exe
 C:\Users\JOY\source\repos\PortalSpying\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.pdb
+C:\Users\esc\source\repos\NibssPortalScrapper\NibssPortalScrapper\obj\Debug\NibssPortalScrapper.csproj.CoreCompileInputs.cache

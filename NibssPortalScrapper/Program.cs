@@ -25,10 +25,12 @@ namespace NibssPortalScrapper
             WebDriver = InitializeBrowser.UserChrome(inputParams.WebUrl, inputParams.DownloadPath, inputParams.Headless);
             try
             {
-                DeleteFiles(inputParams.DownloadPath);
+                DeleteFiles(inputParams.DownloadPath, "echequesummary");
+                DeleteFiles(inputParams.DownloadPath, "settlementreport");
                 LoginStep steps = new LoginStep(WebDriver);
                 NavigationStep navSteps = new NavigationStep(WebDriver);
-                Thread.Sleep(4000);
+                Console.WriteLine("2 mins Delay");
+                Thread.Sleep(30000);
                 log.Info("Entering users details");
                 steps.SetUserDetails(inputParams.Username, inputParams.Password, inputParams.BankCode);
                 steps.EnterLoginDetails();
@@ -73,7 +75,7 @@ namespace NibssPortalScrapper
                     navSteps.DownloadReconciliationReport(inputParams.Session);
                     wasMaxTimeExceeded = BeginDownload(directory, "settlementreport");
                 }
-
+                bool downloadCompleted = false;
                 //Thread.Sleep(30000);
                 int size;
                 //DirectoryInfo directory = new DirectoryInfo(inputParams.DownloadPath);
@@ -83,21 +85,23 @@ namespace NibssPortalScrapper
                     {
                         var files = directory.GetFiles("*.crdownload");
                         size = files.Length;
-                        if (size >= 1) { output = true; }
-                        Thread.Sleep(10000);
+                        if (size >= 1) { downloadCompleted = true; }
+                        Thread.Sleep(2000);
 
                     } while (size != 0);
-                    output = true;
+                    downloadCompleted = true;
                     Console.WriteLine("Download Completed");
                 }
                 else
                 {
-                    output = false;
+                    downloadCompleted = false;
                 }
 
-                //output = true;
+                if(!wasMaxTimeExceeded || downloadCompleted)
+                    output = true;
 
-                navSteps.SwitchToContent();
+                navSteps.SwitchToDefault();
+                //navSteps.SwitchToContent();
                 navSteps.SwitchToHeader();
                 navSteps.SignOut();
             }
@@ -124,7 +128,7 @@ namespace NibssPortalScrapper
             int maxCount = 150, startCount = 1;
             do
             {
-                var checkForDownloadFile = directory.GetFiles($"{search}*.crdownload");
+                var checkForDownloadFile = directory.GetFiles($"{search}*");
                 if (checkForDownloadFile.Length >= 1)
                 {
                     hasDownloadStarted = true;
@@ -180,10 +184,10 @@ namespace NibssPortalScrapper
             }
         }
 
-        public static void DeleteFiles(string downloadPath)
+        public static void DeleteFiles(string downloadPath,string Name)
         {
             DirectoryInfo directory = new DirectoryInfo(downloadPath);
-            var files = directory.GetFiles("echequesummary*");
+            var files = directory.GetFiles($"{Name}*");
             if (files.Any())
             {
                 foreach(var file in files)

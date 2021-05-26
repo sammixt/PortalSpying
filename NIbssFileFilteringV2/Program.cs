@@ -7,6 +7,7 @@ using System.Data.OleDb;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NIbssFileFilteringV2
@@ -98,12 +99,18 @@ namespace NIbssFileFilteringV2
                     throw new Exception($"Invalid Filter Column Supplied::{filterColumn}",
                         new Exception($"Provide a valid column as specified in the config file"));
                 }
+                int TableCount = table.Rows.Count;
+
+                log.Info($"Total Rows Before Filtering {TableCount} ");
 
                 log.Info($"Filtering {filterColumnName} By {filterCondition}");
-                
+             
                 var filteredTable = FilterBy2(table, filterColumnName, filterCondition);
                 int filterTableCount = filteredTable.Rows.Count;
-                if(filterTableCount > 1)
+                log.Info($"Row Count {filterTableCount}");
+
+                Thread.Sleep(3000); 
+                if (filterTableCount > 1)
                 {
                     string connectionString = ConfigurationManager.ConnectionStrings["DbCon"].ConnectionString;
                     string databaseTable = "destinationTable".GetKeyValue();
@@ -158,6 +165,7 @@ namespace NIbssFileFilteringV2
         {
             DataTable outputTable = dataTable.Clone();
             var expression = $"[{filterColumn}] like '%{filterCondition}%'";
+            //var expression = $"[{filterColumn}] like '{filterCondition}%'";
 
             foreach(DataRow row in dataTable.Select(expression))
             {
